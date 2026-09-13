@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useLenis } from "lenis/react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/home/icon";
 import type { Skill } from "@/lib/essential-skills";
 import { icons, skillsExplorer } from "@/lib/home-data";
@@ -16,9 +17,12 @@ type SkillsExplorerProps = {
 };
 
 export function SkillsExplorer({ skills }: SkillsExplorerProps) {
+  const lenis = useLenis();
+  const gridRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [exitingShowMore, setExitingShowMore] = useState(false);
+  const [stableGridHeight, setStableGridHeight] = useState<number | null>(null);
 
   const normalizedQuery = query.trim().toLowerCase();
   const isSearching = normalizedQuery.length > 0;
@@ -28,13 +32,50 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
       )
     : skills;
 
-  const canCollapse = !isSearching && filteredSkills.length > INITIAL_VISIBLE;
+  const canCollapse = filteredSkills.length > INITIAL_VISIBLE;
   const visibleSkills =
     canCollapse && !expanded
       ? filteredSkills.slice(0, INITIAL_VISIBLE)
       : filteredSkills;
   const hiddenCount = filteredSkills.length - INITIAL_VISIBLE;
   const showMoreVisible = canCollapse && !expanded;
+  const isEmpty = filteredSkills.length === 0;
+  const reserveGridHeight =
+    isSearching && !expanded && stableGridHeight != null;
+
+  useEffect(() => {
+    setExpanded(false);
+    setExitingShowMore(false);
+  }, [normalizedQuery]);
+
+  useEffect(() => {
+    if (isSearching || expanded) {
+      return;
+    }
+
+    const grid = gridRef.current;
+    if (!grid) {
+      return;
+    }
+
+    function measure() {
+      if (gridRef.current) {
+        setStableGridHeight(gridRef.current.offsetHeight);
+      }
+    }
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, [isSearching, expanded, skills.length]);
+
+  function expandList() {
+    setExpanded(true);
+    // Content height grows without a window resize; force Lenis to remeasure.
+    requestAnimationFrame(() => lenis?.resize());
+  }
 
   function handleShowMore() {
     if (exitingShowMore) {
@@ -46,13 +87,13 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
     ).matches;
 
     if (reduceMotion) {
-      setExpanded(true);
+      expandList();
       return;
     }
 
     setExitingShowMore(true);
     window.setTimeout(() => {
-      setExpanded(true);
+      expandList();
       setExitingShowMore(false);
     }, SHOW_MORE_EXIT_MS);
   }
@@ -80,22 +121,57 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
             className="text-muted-dim transition-colors group-hover:text-accent group-focus-within:text-accent"
           />
           <input
-            type="search"
+            type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={skillsExplorer.searchPlaceholder}
             className="w-full bg-transparent text-[13px] text-foreground outline-none placeholder:text-muted-dim"
             aria-label={skillsExplorer.searchPlaceholder}
           />
+          {query.length > 0 ? (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              className="shrink-0 text-accent transition-opacity hover:opacity-80"
+              aria-label="Clear search"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden
+              >
+                <path
+                  d="M3.5 3.5l7 7M10.5 3.5l-7 7"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          ) : null}
         </label>
       </div>
 
-      {filteredSkills.length === 0 ? (
-        <p className="text-[13px] text-muted">No skills match</p>
-      ) : (
-        <div className="flex flex-col gap-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleSkills.map((skill, index) => {
+      <div className="flex flex-col gap-8">
+        <div
+          ref={gridRef}
+          className={
+            isEmpty
+              ? "flex items-center justify-center"
+              : "grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          }
+          style={
+            reserveGridHeight
+              ? { minHeight: stableGridHeight }
+              : undefined
+          }
+        >
+          {isEmpty ? (
+            <p className="text-base text-muted">{skillsExplorer.emptySearch}</p>
+          ) : (
+            visibleSkills.map((skill, index) => {
               const isRevealed = expanded && index >= INITIAL_VISIBLE;
 
               return (
@@ -148,22 +224,22 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
                   </div>
                 </Link>
               );
-            })}
-          </div>
-
-          {showMoreVisible ? (
-            <button
-              type="button"
-              onClick={handleShowMore}
-              className={`mx-auto rounded-md border border-border bg-surface px-4 py-2 font-mono text-[12px] font-medium text-muted transition-colors hover:border-accent hover:text-accent${
-                exitingShowMore ? " skill-show-more-exit" : ""
-              }`}
-            >
-              {`Show more (${hiddenCount} more)`}
-            </button>
-          ) : null}
+            })
+          )}
         </div>
-      )}
+
+        {showMoreVisible ? (
+          <button
+            type="button"
+            onClick={handleShowMore}
+            className={`mx-auto rounded-md border border-border bg-surface px-4 py-2 font-mono text-[12px] font-medium text-muted transition-colors hover:border-accent hover:text-accent${
+              exitingShowMore ? " skill-show-more-exit" : ""
+            }`}
+          >
+            {`Show more (${hiddenCount} more)`}
+          </button>
+        ) : null}
+      </div>
     </section>
   );
 }

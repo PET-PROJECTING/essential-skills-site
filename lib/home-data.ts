@@ -136,6 +136,7 @@ export const skillsExplorer = {
   title: "Skills Explorer",
   description: "Review the exact instruction files being injected.",
   searchPlaceholder: "Search skills...",
+  emptySearch: "No skills match",
   recommendedBadge: "Recommended",
 } as const;
 
