@@ -12,6 +12,9 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     <ReactLenis
       root
       options={{
+        // Observe <body>: <html> height can stay viewport-sized while
+        // page content grows (e.g. expanded skills), so Lenis would miss resizes.
+        content: typeof document !== "undefined" ? document.body : undefined,
         lerp: 0.1,
         anchors: false,
         autoRaf: true,

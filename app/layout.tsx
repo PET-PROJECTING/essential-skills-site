@@ -63,9 +63,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="flex min-h-full flex-col font-text">
+      <body className="flex min-h-dvh flex-col font-text">
         <SmoothScroll>
           {children}
           <ScrollToTop />

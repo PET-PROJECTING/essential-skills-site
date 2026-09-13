@@ -18,7 +18,7 @@ export default async function Home() {
   const packs = getPacks(packageSkills.quickCount, packageSkills.totalCount);
 
   return (
-    <div className="relative flex min-h-full flex-col items-center bg-background">
+    <div className="relative flex min-h-dvh flex-col items-center bg-background">
       <ScrollSectionRestore />
       <SymbolRain />
       <CursorGlow />

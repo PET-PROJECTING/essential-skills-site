@@ -63,7 +63,7 @@ export default async function SkillPage({
   }
 
   return (
-    <div className="flex min-h-full flex-col items-center bg-background px-5 py-16 sm:px-10 lg:px-20">
+    <div className="flex min-h-dvh flex-col items-center bg-background px-5 py-16 sm:px-10 lg:px-20">
       <div className="flex w-full max-w-2xl flex-col gap-8">
         <ScrollSectionButton
           sectionId="skills"

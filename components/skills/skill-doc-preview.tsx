@@ -1,5 +1,6 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type SkillDocPreviewProps = {
@@ -7,6 +8,7 @@ type SkillDocPreviewProps = {
 };
 
 export function SkillDocPreview({ children }: SkillDocPreviewProps) {
+  const lenis = useLenis();
   const [expanded, setExpanded] = useState(false);
   const [overflows, setOverflows] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -32,6 +34,11 @@ export function SkillDocPreview({ children }: SkillDocPreviewProps) {
     return () => observer.disconnect();
   }, [expanded, children]);
 
+  function handleExpand() {
+    setExpanded(true);
+    requestAnimationFrame(() => lenis?.resize());
+  }
+
   const clamped = !expanded && overflows;
 
   return (
@@ -51,7 +58,7 @@ export function SkillDocPreview({ children }: SkillDocPreviewProps) {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex h-48 items-end justify-center bg-gradient-to-t from-surface from-15% via-surface/70 via-45% to-transparent to-100% pb-1">
           <button
             type="button"
-            onClick={() => setExpanded(true)}
+            onClick={handleExpand}
             className="pointer-events-auto rounded-md border border-border bg-surface-raised px-3 py-1.5 text-[13px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent focus-visible:outline-none"
           >
             Show all
