@@ -99,29 +99,38 @@ export function HowItWorks() {
                   <span className="text-accent">◆</span> {terminal.active.question}
                 </p>
                 <ul className="space-y-1 pl-4">
-                  {terminal.active.options.map((option) => (
-                    <li
-                      key={option.label}
-                      className={
-                        option.selected ? "text-foreground" : "text-muted-dim"
-                      }
-                    >
-                      <span className="text-muted-dim">│</span>{" "}
-                      <span
+                  {terminal.active.options.map((option, index) => {
+                    const isLast =
+                      index === terminal.active.options.length - 1;
+                    return (
+                      <li
+                        key={option.label}
                         className={
-                          option.selected ? "text-accent" : "text-muted-dim"
+                          option.selected
+                            ? "text-foreground"
+                            : "text-muted-dim"
                         }
                       >
-                        {option.selected ? "●" : "○"}
-                      </span>{" "}
-                      {option.label}
-                      <span className="text-muted-dim">
-                        {" "}
-                        ({option.hint})
-                      </span>
-                    </li>
-                  ))}
-                  <li className="text-muted-dim">└</li>
+                        <span className="text-muted-dim">
+                          {isLast ? "└" : "│"}
+                        </span>{" "}
+                        <span
+                          className={
+                            option.selected
+                              ? "text-accent"
+                              : "text-muted-dim"
+                          }
+                        >
+                          {option.selected ? "●" : "○"}
+                        </span>{" "}
+                        {option.label}
+                        <span className="text-muted-dim">
+                          {" "}
+                          ({option.hint})
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
