@@ -187,7 +187,9 @@ export const integration = {
   scopes: [
     {
       icon: "package" as const,
-      text: "Project: installs into the current repo (e.g. .cursor/skills or .agents/skills).",
+      before: "Project: installs into the current repo (e.g. ",
+      paths: [".cursor/skills", ".agents/skills"] as const,
+      after: ").",
     },
     {
       icon: "globe" as const,
