@@ -6,8 +6,6 @@ import { icons, site } from "@/lib/home-data";
 
 export function CopyInstall() {
   const [copied, setCopied] = useState(false);
-  const [burst, setBurst] = useState(0);
-  const [flashing, setFlashing] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -18,8 +16,6 @@ export function CopyInstall() {
 
   async function handleCopy() {
     setCopied(true);
-    setFlashing(true);
-    setBurst((n) => n + 1);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
@@ -43,28 +39,19 @@ export function CopyInstall() {
         aria-live="polite"
         className="copy-install-btn relative flex cursor-pointer items-center justify-center rounded-md px-2 py-1 font-mono text-xs font-semibold text-accent"
       >
-        {flashing ? (
-          <span
-            key={`flash-${burst}`}
-            className="copy-install-flash"
-            onAnimationEnd={() => setFlashing(false)}
-          />
-        ) : null}
         <span className="invisible inline-flex items-center gap-1.5" aria-hidden>
           <Icon src={icons.check} size={14} currentColor />
           Copied
         </span>
         <span
-          key={`${copied}-${burst}`}
-          className={`copy-install-label absolute inset-0 inline-flex items-center justify-center gap-1.5 ${
-            burst > 0 ? (copied ? "is-pop" : "is-restore") : ""
+          className={`absolute inset-0 inline-flex items-center justify-center gap-1.5 ${
+            copied ? "is-copied" : ""
           }`}
         >
           <Icon
             src={copied ? icons.check : icons.clipboardCopy}
             size={14}
             currentColor
-            className="copy-install-icon"
           />
           {copied ? "Copied" : "Copy"}
         </span>

@@ -189,95 +189,25 @@ body {
   animation-play-state: paused;
 }
 
-@keyframes copy-install-flash {
+@keyframes copy-install-scale {
   0% {
-    opacity: 0;
-    transform: scale(0.7);
+    transform: scale(0.9);
   }
-  35% {
-    opacity: 1;
+  100% {
     transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes copy-install-pop {
-  0% {
-    opacity: 0;
-    transform: translateY(7px) scale(0.84);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-2px) scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes copy-install-restore {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes copy-install-icon-pop {
-  0% {
-    transform: scale(0.35) rotate(-22deg);
-  }
-  55% {
-    transform: scale(1.3) rotate(8deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
   }
 }
 
 .copy-install-btn {
-  position: relative;
-  isolation: isolate;
-  transition:
-    color 160ms ease,
-    transform 120ms ease;
+  transition: transform 120ms ease;
 }
 
 .copy-install-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.96);
 }
 
-.copy-install-flash {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: var(--accent);
-  animation: copy-install-flash 520ms ease-out both;
-}
-
-.copy-install-btn:has(.copy-install-flash) {
-  color: #08080a;
-}
-
-.copy-install-label.is-pop {
-  animation: copy-install-pop 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.copy-install-label.is-restore {
-  animation: copy-install-restore 280ms ease-out both;
-}
-
-.copy-install-label.is-pop .copy-install-icon {
-  animation: copy-install-icon-pop 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.copy-install-btn .is-copied {
+  animation: copy-install-scale 280ms ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -286,10 +216,7 @@ body {
   .how-step-visible,
   .pack-fade-visible,
   .type-caret,
-  .copy-install-flash,
-  .copy-install-label.is-pop,
-  .copy-install-label.is-restore,
-  .copy-install-label.is-pop .copy-install-icon {
+  .copy-install-btn .is-copied {
     animation: none;
   }
 
