@@ -39,6 +39,16 @@ body {
   overflow-x: clip;
 }
 
+::selection {
+  background-color: #cf0;
+  color: #08080a;
+}
+
+::-moz-selection {
+  background-color: #cf0;
+  color: #08080a;
+}
+
 .cursor-glow {
   background: radial-gradient(
     560px circle at var(--glow-x, 50%) var(--glow-y, 20%),
