@@ -19,7 +19,7 @@ export function Header() {
           <ScrollSectionButton
             key={link.id}
             sectionId={link.id}
-            className="text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+            className="text-muted transition-colors hover:text-accent focus-visible:text-accent"
           >
             {link.label}
           </ScrollSectionButton>
@@ -31,7 +31,7 @@ export function Header() {
           href={site.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+          className="flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent focus-visible:text-accent"
         >
           <Icon src={icons.github} size={16} currentColor />
           <span>{site.githubLabel}</span>
@@ -40,7 +40,7 @@ export function Header() {
           href={site.npmUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+          className="flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent focus-visible:text-accent"
         >
           <Icon src={icons.boxSelect} size={16} currentColor />
           <span>{site.npmLabel}</span>

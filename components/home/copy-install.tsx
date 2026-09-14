@@ -36,7 +36,7 @@ export function CopyInstall() {
       <button
         type="button"
         onClick={handleCopy}
-        aria-live="polite"
+        aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
         className="copy-install-btn relative flex cursor-pointer items-center justify-center rounded-md px-2 py-1 font-mono text-xs font-semibold text-accent"
       >
         <span className="invisible inline-flex items-center gap-1.5" aria-hidden>
@@ -47,6 +47,7 @@ export function CopyInstall() {
           className={`absolute inset-0 inline-flex items-center justify-center gap-1.5 ${
             copied ? "is-copied" : ""
           }`}
+          aria-hidden
         >
           <Icon
             src={copied ? icons.check : icons.clipboardCopy}

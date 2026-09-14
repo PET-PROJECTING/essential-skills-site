@@ -4,18 +4,24 @@ import { agentsStrip, icons } from "@/lib/home-data";
 /** Repeat enough times so one segment is wider than typical viewports. */
 const SEGMENT_REPEAT = 3;
 
-function AgentItem({ name, href }: { name: string; href: string }) {
+function AgentItem({ name, href, inert }: { name: string; href: string; inert?: boolean }) {
   return (
     <div className="flex shrink-0 items-center gap-1.5">
       <Icon src={icons.terminal} size={14} />
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="pointer-events-auto whitespace-nowrap text-sm font-medium text-foreground transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
-      >
-        {name}
-      </a>
+      {inert ? (
+        <span className="pointer-events-none whitespace-nowrap text-sm font-medium text-foreground">
+          {name}
+        </span>
+      ) : (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pointer-events-auto whitespace-nowrap text-sm font-medium text-foreground transition-colors hover:text-accent focus-visible:text-accent"
+        >
+          {name}
+        </a>
+      )}
     </div>
   );
 }
@@ -40,7 +46,7 @@ function AgentSegment({
       aria-hidden={inert || undefined}
     >
       {items.map((agent) => (
-        <AgentItem key={agent.key} name={agent.name} href={agent.href} />
+        <AgentItem key={agent.key} name={agent.name} href={agent.href} inert={inert} />
       ))}
     </div>
   );
