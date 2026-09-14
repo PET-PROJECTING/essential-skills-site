@@ -178,7 +178,7 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
                 <Link
                   key={skill.name}
                   href={`/skills/${skill.name}`}
-                  className={`group flex flex-col gap-5 rounded-lg border border-border bg-surface p-6 transition-colors hover:border-accent${
+                  className={`group flex flex-col gap-5 rounded-lg border border-border bg-surface p-6 transition-colors hover:border-accent focus-visible:border-accent${
                     isRevealed ? " skill-reveal" : ""
                   }`}
                   style={

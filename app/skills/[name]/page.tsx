@@ -67,7 +67,7 @@ export default async function SkillPage({
       <div className="flex w-full max-w-2xl flex-col gap-8">
         <ScrollSectionButton
           sectionId="skills"
-          className="group inline-flex w-fit items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+          className="group inline-flex w-fit items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent focus-visible:text-accent"
         >
           <span
             aria-hidden

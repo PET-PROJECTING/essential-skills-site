@@ -57,15 +57,64 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
+};
+
+export const viewport = {
+  themeColor: "#08080a",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${getMetadataBase()}/#website`,
+        url: getMetadataBase(),
+        name: site.name,
+        description:
+          "Install curated, structured skill protocols for AI coding agents. Enforce TDD, SOLID principles, and clean commits.",
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${getMetadataBase()}/#software`,
+        name: site.name,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Cross-platform",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        description:
+          "CLI tool to install curated skill protocols for AI coding agents like Cursor, Claude Code, Codex, and Copilot.",
+        url: site.githubUrl,
+        downloadUrl: site.npmUrl,
+        softwareVersion: "1.0",
+        license: "https://opensource.org/licenses/MIT",
+      },
+    ],
+  };
+
   return (
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#cf0] selection:text-[#08080a]`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="flex min-h-dvh flex-col font-text">
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
         <SmoothScroll>
           {children}
           <ScrollToTop />

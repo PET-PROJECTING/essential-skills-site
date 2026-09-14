@@ -15,7 +15,7 @@ export function Cta() {
           href={site.npmUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex cursor-pointer items-center gap-2 rounded-md border border-accent bg-transparent px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent-soft focus-visible:bg-accent-soft focus-visible:outline-none"
+          className="flex cursor-pointer items-center gap-2 rounded-md border border-accent bg-transparent px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent-soft focus-visible:bg-accent-soft"
         >
           <Icon src={icons.terminal} size={14} currentColor />
           {cta.primary}
@@ -24,7 +24,7 @@ export function Cta() {
           href={site.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-md border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent focus-visible:outline-none"
+          className="flex items-center gap-2 rounded-md border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent"
         >
           <Icon src={icons.githubLight} size={14} currentColor />
           {cta.secondary}

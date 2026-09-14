@@ -24,7 +24,7 @@ export default async function Home() {
       <CursorGlow />
       <div className="relative z-1 flex w-full flex-col items-center">
         <Header />
-        <main className="flex w-full flex-col items-center">
+        <main id="main" className="flex w-full flex-col items-center">
           <Hero stats={getHeroStats(packageSkills.totalCount)} />
           <HowItWorks />
           <Packs packs={packs} />
