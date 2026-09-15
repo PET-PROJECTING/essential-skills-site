@@ -105,7 +105,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#cf0] selection:text-[#08080a]`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <head>
         <script

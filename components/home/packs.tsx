@@ -53,7 +53,7 @@ export function Packs({ packs }: PacksProps) {
             key={pack.name}
             className={`pack-fade flex h-full flex-col gap-6 rounded-lg border bg-surface p-6 sm:p-8 ${
               pack.featured
-                ? "border-accent shadow-[0px_4px_12px_rgba(204,255,0,0.05)]"
+                ? "border-accent pack-featured"
                 : "border-border"
             } ${visible ? "pack-fade-visible" : ""}`}
             style={{ "--pack-delay": `${index * 160}ms` } as CSSProperties}

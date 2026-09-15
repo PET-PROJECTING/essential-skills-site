@@ -5,6 +5,12 @@ import { useEffect, useRef } from "react";
 const GLYPHS =
   "01{}[]<>/\\|$&#%*+=~:;.,-_01{}[]<>$#*/01ABCDEF".split("");
 
+type Rgb = {
+  r: number;
+  g: number;
+  b: number;
+};
+
 type Drop = {
   x: number;
   y: number;
@@ -14,6 +20,26 @@ type Drop = {
   alpha: number;
   flipAt: number;
 };
+
+function parseHexColor(value: string): Rgb | null {
+  const match = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(value.trim());
+  if (!match?.[1]) return null;
+
+  const raw = match[1];
+  if (raw.length === 3) {
+    return {
+      r: Number.parseInt(raw[0] + raw[0], 16),
+      g: Number.parseInt(raw[1] + raw[1], 16),
+      b: Number.parseInt(raw[2] + raw[2], 16),
+    };
+  }
+
+  return {
+    r: Number.parseInt(raw.slice(0, 2), 16),
+    g: Number.parseInt(raw.slice(2, 4), 16),
+    b: Number.parseInt(raw.slice(4, 6), 16),
+  };
+}
 
 function createDrop(width: number, height: number, fromTop: boolean): Drop {
   return {
@@ -44,6 +70,11 @@ export function SymbolRain() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    const accent = parseHexColor(
+      getComputedStyle(document.documentElement).getPropertyValue("--accent"),
+    );
+    if (!accent) return;
 
     let drops: Drop[] = [];
     let raf = 0;
@@ -86,11 +117,11 @@ export function SymbolRain() {
         }
 
         const lead = drop.alpha + 0.12;
-        ctx.fillStyle = `rgba(204, 255, 0, ${Math.min(lead, 0.42)})`;
+        ctx.fillStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${Math.min(lead, 0.42)})`;
         ctx.font = `500 ${drop.size}px "JetBrains Mono", ui-monospace, monospace`;
         ctx.fillText(drop.glyph, drop.x, drop.y);
 
-        ctx.fillStyle = `rgba(204, 255, 0, ${drop.alpha * 0.4})`;
+        ctx.fillStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${drop.alpha * 0.4})`;
         ctx.fillText(
           GLYPHS[Math.floor(Math.random() * GLYPHS.length)] ?? "1",
           drop.x,

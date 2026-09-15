@@ -40,13 +40,13 @@ body {
 }
 
 ::selection {
-  background-color: #cf0;
-  color: #08080a;
+  background-color: var(--accent);
+  color: var(--background);
 }
 
 ::-moz-selection {
-  background-color: #cf0;
-  color: #08080a;
+  background-color: var(--accent);
+  color: var(--background);
 }
 
 a:focus-visible,
@@ -81,9 +81,13 @@ select:focus-visible {
 .cursor-glow {
   background: radial-gradient(
     560px circle at var(--glow-x, 50%) var(--glow-y, 20%),
-    rgba(204, 255, 0, 0.12),
+    color-mix(in srgb, var(--accent) 12%, transparent),
     transparent 70%
   );
+}
+
+.pack-featured {
+  box-shadow: 0px 4px 12px color-mix(in srgb, var(--accent) 5%, transparent);
 }
 
 .pack-fade {
