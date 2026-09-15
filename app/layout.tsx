@@ -4,7 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ScrollToTop } from "@/components/home/scroll-to-top";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { site } from "@/lib/home-data";
+import { getPackageSkills } from "@/lib/essential-skills";
+import { hero, site } from "@/lib/home-data";
 import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
 
@@ -18,26 +19,23 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const description =
-  "Install curated, structured skill protocols for AI coding agents. Enforce TDD, SOLID principles, and clean commits.";
-
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
   title: {
     default: site.name,
     template: `%s | ${site.name}`,
   },
-  description,
+  description: hero.description,
   applicationName: site.name,
   authors: [{ name: site.name, url: site.githubUrl }],
   creator: site.name,
   keywords: [
+    "essential-skills",
+    "npx essential-skills",
+    "Quick pack",
+    "Full pack",
     "AI coding agents",
     "Cursor skills",
-    "agent skills",
-    "TDD",
-    "SOLID",
-    "essential-skills",
   ],
   alternates: {
     canonical: "/",
@@ -48,12 +46,12 @@ export const metadata: Metadata = {
     url: "/",
     siteName: site.name,
     title: site.name,
-    description,
+    description: hero.description,
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
-    description,
+    description: hero.description,
   },
   robots: {
     index: true,
@@ -68,7 +66,8 @@ export const viewport = {
   themeColor: "#08080a",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const { version } = await getPackageSkills();
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -77,8 +76,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         "@id": `${getMetadataBase()}/#website`,
         url: getMetadataBase(),
         name: site.name,
-        description:
-          "Install curated, structured skill protocols for AI coding agents. Enforce TDD, SOLID principles, and clean commits.",
+        description: hero.description,
         inLanguage: "en-US",
       },
       {
@@ -96,7 +94,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           "CLI tool to install curated skill protocols for AI coding agents like Cursor, Claude Code, Codex, and Copilot.",
         url: site.githubUrl,
         downloadUrl: site.npmUrl,
-        softwareVersion: "1.0",
+        softwareVersion: version,
         license: "https://opensource.org/licenses/MIT",
       },
     ],

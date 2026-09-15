@@ -13,7 +13,7 @@ export function Hero({ stats }: HeroProps) {
     <section className="flex min-h-svh w-full flex-col items-center justify-center gap-10 border-b border-border px-5 py-16 sm:px-10 sm:py-24 lg:px-20 lg:py-[120px]">
       <div className="flex w-full max-w-[880px] flex-col items-center gap-4 text-center">
         <div className="rounded-full border border-accent bg-accent-soft px-3 py-1">
-          <span className="font-mono text-[11px] font-semibold text-accent">
+          <span className="font-mono text-xs font-semibold text-accent">
             {hero.badge}
           </span>
         </div>
@@ -22,7 +22,7 @@ export function Hero({ stats }: HeroProps) {
 
       <CopyInstall />
 
-      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[13px] text-accent">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs text-accent">
         {stats.map((stat, index) => (
           <Fragment key={stat}>
             {index > 0 ? <Icon src={icons.ellipse} size={4} /> : null}

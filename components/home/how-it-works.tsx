@@ -50,7 +50,7 @@ export function HowItWorks() {
               style={{ "--how-delay": `${index * 220}ms` } as CSSProperties}
             >
               <span className="font-mono text-xs text-accent">{step.number}</span>
-              <h3 className="text-base font-semibold text-foreground">
+              <h3 className="text-lg font-semibold text-foreground">
                 {step.title}
               </h3>
               <p className="text-sm leading-normal text-muted">
@@ -69,12 +69,12 @@ export function HowItWorks() {
             <span className="size-2 rounded-full bg-border" />
             <span className="size-2 rounded-full bg-border" />
             <span className="size-2 rounded-full bg-border" />
-            <span className="ml-2 font-mono text-[11px] text-muted-dim">
+            <span className="ml-2 font-mono text-xs text-muted-dim">
               {terminal.title}
             </span>
           </div>
 
-          <div className="space-y-4 px-4 py-4 font-mono text-[12px] leading-relaxed sm:px-5 sm:py-5 sm:text-[13px]">
+          <div className="space-y-4 px-4 py-4 font-mono text-xs leading-relaxed sm:px-5 sm:py-5">
             <p>
               <span className="text-accent">$</span>{" "}
               <span className="text-foreground">{terminal.command}</span>
@@ -135,7 +135,7 @@ export function HowItWorks() {
               </div>
             </div>
 
-            <p className="pt-1 text-[11px] text-muted-dim">{terminal.footer}</p>
+            <p className="pt-1 text-xs text-muted-dim">{terminal.footer}</p>
           </div>
         </div>
       </div>

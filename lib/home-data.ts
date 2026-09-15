@@ -27,9 +27,12 @@ export const hero = {
   badge: "OPEN-SOURCE CLI FOR AGENTS",
   title: "Better habits for your AI coding agent",
   description:
-    "Install curated, structured skill protocols directly into your agent's system prompt directory. Enforce TDD, SOLID principles, and clean commits instantly.",
+    "Install curated skill protocols for AI coding agents. Choose Quick or Full, then read the exact SKILL.md that gets copied onto your machine.",
   staticStats: ["7 agents supported", "MIT License"] as const,
 } as const;
+
+export const ogSubtitle =
+  "Curated skill protocols. Quick or Full. The exact SKILL.md your agent will use.";
 
 export function getHeroStats(skillCount: number): string[] {
   return [`${skillCount} skills`, ...hero.staticStats];
@@ -177,7 +180,7 @@ export const recommendedFlow = {
     title: "Why files, not chat",
     headline: "Context in a chat is a single point of failure.",
     intro: [
-      "A chat can end, a session can be cleared, a teammate can pull the branch. Specs and context are written into the repo, so the knowledge is still there — it was never trapped in a conversation.",
+      "A chat can end, a session can be cleared, a teammate can pull the branch. Specs and context are written into your repo, so the knowledge is still there — it was never trapped in a conversation.",
       "A new session reads those files from disk. You don't reconstruct the interview every time the thread dies.",
     ],
     chat: {

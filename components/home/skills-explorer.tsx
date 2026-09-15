@@ -108,7 +108,7 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
           <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">
             {skillsExplorer.title}
           </h2>
-          <p className="font-text text-[13px] text-muted">
+          <p className="font-text text-sm text-muted">
             {skillsExplorer.description}
           </p>
         </div>
@@ -125,7 +125,7 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={skillsExplorer.searchPlaceholder}
-            className="w-full bg-transparent text-[13px] text-foreground outline-none placeholder:text-muted-dim"
+            className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-dim"
             aria-label={skillsExplorer.searchPlaceholder}
           />
           {query.length > 0 ? (
@@ -200,19 +200,19 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
                       className="text-muted-dim transition-colors group-hover:text-accent"
                     />
                   </div>
-                  <p className="text-[13px] leading-normal text-muted">
+                  <p className="text-sm leading-normal text-muted">
                     {skill.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {skill.recommended ? (
-                      <span className="rounded border border-accent bg-accent-soft px-2 py-1 font-mono text-[10px] font-medium text-accent">
+                      <span className="rounded border border-accent bg-accent-soft px-2 py-1 font-mono text-xs font-medium text-accent">
                         {skillsExplorer.recommendedBadge}
                       </span>
                     ) : null}
                     {skill.tags.map((tag) => (
                       <span
                         key={tag.label}
-                        className={`rounded border px-2 py-1 font-mono text-[10px] font-medium ${
+                        className={`rounded border px-2 py-1 font-mono text-xs font-medium ${
                           tag.accent
                             ? "border-accent bg-accent-soft text-accent"
                             : "border-border bg-surface-raised text-muted"
@@ -232,7 +232,7 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
           <button
             type="button"
             onClick={handleShowMore}
-            className={`mx-auto rounded-md border border-border bg-surface px-4 py-2 font-mono text-[12px] font-medium text-muted transition-colors hover:border-accent hover:text-accent${
+            className={`mx-auto rounded-md border border-border bg-surface px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-accent hover:text-accent${
               exitingShowMore ? " skill-show-more-exit" : ""
             }`}
           >

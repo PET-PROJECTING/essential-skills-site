@@ -60,11 +60,11 @@ export function Packs({ packs }: PacksProps) {
           >
             <div className="flex flex-1 flex-col gap-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">
                   {pack.name}
                 </h3>
                 <span
-                  className={`rounded border px-2 py-1 font-mono text-[10px] font-medium ${
+                  className={`rounded border px-2 py-1 font-mono text-xs font-medium ${
                     pack.badgeAccent
                       ? "border-accent bg-accent-soft text-accent"
                       : "border-border bg-surface-raised text-muted"
@@ -82,7 +82,7 @@ export function Packs({ packs }: PacksProps) {
               {pack.features.map((feature) => (
                 <li key={feature} className="flex items-center gap-2">
                   <Icon src={icons.check} size={14} />
-                  <span className="text-[13px] text-foreground">{feature}</span>
+                  <span className="text-sm text-foreground">{feature}</span>
                 </li>
               ))}
             </ul>

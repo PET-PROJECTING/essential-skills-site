@@ -55,7 +55,7 @@ function AgentSegment({
 export function AgentsStrip() {
   return (
     <section className="flex w-full max-w-full flex-col items-center gap-6 overflow-x-clip border-b border-border py-10 sm:py-12">
-      <p className="px-5 font-mono text-[11px] uppercase text-muted-dim sm:px-10 lg:px-20">
+      <p className="px-5 font-mono text-xs uppercase text-muted-dim sm:px-10 lg:px-20">
         {agentsStrip.label}
       </p>
 

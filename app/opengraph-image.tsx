@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { ogSubtitle } from "@/lib/home-data";
 
 export const alt = "Essential Skills — skill protocols for AI coding agents";
 export const size = {
@@ -66,7 +67,7 @@ export default function OpenGraphImage() {
               maxWidth: 820,
             }}
           >
-            Curated skill protocols for TDD, SOLID, clean commits, and more.
+            {ogSubtitle}
           </div>
         </div>
 

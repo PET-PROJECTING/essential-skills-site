@@ -82,19 +82,19 @@ export default async function SkillPage({
           <h1 className="font-mono text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {skill.name}
           </h1>
-          <p className="text-[15px] leading-relaxed text-muted">
+          <p className="text-sm leading-relaxed text-muted">
             {skill.description}
           </p>
           <div className="flex flex-wrap gap-2">
             {skill.recommended ? (
-              <span className="rounded border border-accent bg-accent-soft px-2 py-1 font-mono text-[10px] font-medium text-accent">
+              <span className="rounded border border-accent bg-accent-soft px-2 py-1 font-mono text-xs font-medium text-accent">
                 {skillsExplorer.recommendedBadge}
               </span>
             ) : null}
             {skill.tags.map((tag) => (
               <span
                 key={tag.label}
-                className={`rounded border px-2 py-1 font-mono text-[10px] font-medium ${
+                className={`rounded border px-2 py-1 font-mono text-xs font-medium ${
                   tag.accent
                     ? "border-accent bg-accent-soft text-accent"
                     : "border-border bg-surface-raised text-muted"

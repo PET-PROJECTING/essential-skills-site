@@ -59,7 +59,7 @@ export function SkillDocPreview({ children }: SkillDocPreviewProps) {
           <button
             type="button"
             onClick={handleExpand}
-            className="pointer-events-auto rounded-md border border-border bg-surface-raised px-3 py-1.5 text-[13px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent"
+            className="pointer-events-auto rounded-md border border-border bg-surface-raised px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent"
           >
             Show all
           </button>

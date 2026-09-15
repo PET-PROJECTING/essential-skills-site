@@ -7,7 +7,7 @@ type SkillMarkdownProps = {
 
 export function SkillMarkdown({ markdown }: SkillMarkdownProps) {
   return (
-    <div className="skill-markdown text-[13px] leading-relaxed text-muted">
+    <div className="skill-markdown text-sm leading-relaxed text-muted">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -22,7 +22,7 @@ export function SkillMarkdown({ markdown }: SkillMarkdownProps) {
             </h3>
           ),
           h3: ({ children }) => (
-            <h4 className="mt-4 mb-2 text-[13px] font-semibold text-foreground first:mt-0">
+            <h4 className="mt-4 mb-2 text-sm font-semibold text-foreground first:mt-0">
               {children}
             </h4>
           ),
@@ -53,13 +53,13 @@ export function SkillMarkdown({ markdown }: SkillMarkdownProps) {
             const isBlock = Boolean(className);
             if (isBlock) {
               return (
-                <code className="font-mono text-[12px] text-foreground">
+                <code className="font-mono text-xs text-foreground">
                   {children}
                 </code>
               );
             }
             return (
-              <code className="rounded border border-border bg-surface-raised px-1 py-0.5 font-mono text-[12px] text-foreground">
+              <code className="rounded border border-border bg-surface-raised px-1 py-0.5 font-mono text-xs text-foreground">
                 {children}
               </code>
             );
@@ -90,7 +90,7 @@ export function SkillMarkdown({ markdown }: SkillMarkdownProps) {
             <tr className="border-b border-border last:border-b-0">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="px-2 py-1.5 font-mono text-[11px] font-medium text-foreground">
+            <th className="px-2 py-1.5 font-mono text-xs font-medium text-foreground">
               {children}
             </th>
           ),

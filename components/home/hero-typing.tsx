@@ -85,7 +85,7 @@ export function HeroTyping({ title, description }: HeroTypingProps) {
 
   return (
     <div ref={rootRef} className="flex w-full flex-col items-center gap-4 text-center">
-      <h1 className="grid w-full font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-[64px]">
+      <h1 className="grid w-full font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
         <span className="sr-only">{title}</span>
         <span className="invisible col-start-1 row-start-1" aria-hidden>
           {title}
@@ -98,7 +98,7 @@ export function HeroTyping({ title, description }: HeroTypingProps) {
           {active === "title" ? <span className="type-caret" /> : null}
         </span>
       </h1>
-      <p className="grid max-w-[600px] font-text text-base leading-normal text-muted sm:text-lg">
+      <p className="grid max-w-[600px] font-text text-base leading-normal text-muted">
         <span className="sr-only">{description}</span>
         <span className="invisible col-start-1 row-start-1" aria-hidden>
           {description}

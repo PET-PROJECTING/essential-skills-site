@@ -5,10 +5,10 @@ export function Cta() {
   return (
     <section className="flex w-full flex-col items-center gap-8 bg-surface/90 px-5 py-16 text-center sm:px-10 sm:py-20 lg:px-20 lg:py-24">
       <div className="flex max-w-[520px] flex-col items-center gap-3">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-[32px]">
+        <h2 className="font-display text-xl font-bold tracking-tight text-foreground">
           {cta.title}
         </h2>
-        <p className="font-text text-[15px] text-muted">{cta.description}</p>
+        <p className="font-text text-sm text-muted">{cta.description}</p>
       </div>
       <div className="flex flex-col items-center gap-4 sm:flex-row">
         <a
