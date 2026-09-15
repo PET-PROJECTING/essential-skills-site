@@ -2,7 +2,7 @@ import type { PackageSkillsData } from "@/lib/essential-skills";
 
 /** Hand-maintained fallback when the npm registry is unreachable. */
 export const essentialSkillsSnapshot: PackageSkillsData = {
-  version: "1.9.0",
+  version: "1.9.1",
   totalCount: 21,
   quickCount: 13,
   fullCount: 21,
