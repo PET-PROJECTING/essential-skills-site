@@ -2,10 +2,10 @@ import type { PackageSkillsData } from "@/lib/essential-skills";
 
 /** Hand-maintained fallback when the npm registry is unreachable. */
 export const essentialSkillsSnapshot: PackageSkillsData = {
-  version: "1.8.1",
-  totalCount: 19,
-  quickCount: 11,
-  fullCount: 19,
+  version: "1.9.0",
+  totalCount: 21,
+  quickCount: 13,
+  fullCount: 21,
   skills: [
     {
       name: "show-skill-catalog",
@@ -27,6 +27,24 @@ export const essentialSkillsSnapshot: PackageSkillsData = {
       name: "grill-me",
       description:
         "Interview before implementation; skip only pure Q&A or read-only review with no follow-up",
+      tags: [
+        { label: "Quick" },
+        { label: "Full", accent: true },
+      ],
+    },
+    {
+      name: "specify-context",
+      description:
+        "Bootstrap docs context files, merge AGENTS.md/CLAUDE.md, grill one unfilled file per run",
+      tags: [
+        { label: "Quick" },
+        { label: "Full", accent: true },
+      ],
+    },
+    {
+      name: "create-feature-spec",
+      description:
+        "Grill a unit spec under feature-specs and update the progress tracker (installs with specify-context)",
       tags: [
         { label: "Quick" },
         { label: "Full", accent: true },
