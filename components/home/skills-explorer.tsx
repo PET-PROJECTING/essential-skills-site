@@ -160,7 +160,7 @@ export function SkillsExplorer({ skills }: SkillsExplorerProps) {
           className={
             isEmpty
               ? "flex items-center justify-center"
-              : "grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid content-start gap-6 sm:grid-cols-2 lg:grid-cols-3"
           }
           style={
             reserveGridHeight
