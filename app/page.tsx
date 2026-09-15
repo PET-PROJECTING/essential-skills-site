@@ -7,6 +7,7 @@ import { Hero } from "@/components/home/hero";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { Integration } from "@/components/home/integration";
 import { Packs } from "@/components/home/packs";
+import { RecommendedFlow } from "@/components/home/recommended-flow";
 import { ScrollSectionRestore } from "@/components/home/scroll-section";
 import { SkillsExplorer } from "@/components/home/skills-explorer";
 import { SymbolRain } from "@/components/home/symbol-rain";
@@ -28,6 +29,7 @@ export default async function Home() {
           <Hero stats={getHeroStats(packageSkills.totalCount)} />
           <HowItWorks />
           <Packs packs={packs} />
+          <RecommendedFlow />
           <SkillsExplorer skills={packageSkills.skills} />
           <AgentsStrip />
           <Integration />

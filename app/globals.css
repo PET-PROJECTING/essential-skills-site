@@ -10,6 +10,8 @@
   --border: #1d1d24;
   --accent: #cf0;
   --accent-soft: #1a2400;
+  --danger: #ffa2a2;
+  --danger-soft: #2a0b0d;
 }
 
 @theme inline {
@@ -22,6 +24,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
 
   /* Display: Space Grotesk — geometric, precise, fits agent-skill craft */
   --font-display: var(--font-space-grotesk);
@@ -88,6 +92,89 @@ select:focus-visible {
 
 .pack-featured {
   box-shadow: 0px 4px 12px color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.flow-pipeline {
+  position: relative;
+  min-width: 70rem;
+}
+
+.flow-dot-track {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow-dot-track::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.flow-pipeline li:first-child .flow-dot-track::before {
+  left: 50%;
+}
+
+.flow-pipeline li:last-child .flow-dot-track::before {
+  right: 50%;
+}
+
+.flow-dot {
+  position: relative;
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: var(--accent);
+}
+
+.flow-step {
+  opacity: 0;
+  transform: translateX(-14px);
+}
+
+.flow-step-visible {
+  animation: flow-step-reveal 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--flow-delay, 0ms);
+}
+
+@keyframes flow-step-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.flow-pill {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.flow-pill-visible {
+  animation: flow-pill-stack 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--flow-pill-delay, 0ms);
+}
+
+@keyframes flow-pill-stack {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pack-fade {
@@ -248,13 +335,17 @@ select:focus-visible {
   .skill-show-more-exit,
   .how-step-visible,
   .pack-fade-visible,
+  .flow-step-visible,
+  .flow-pill-visible,
   .type-caret,
   .copy-install-btn .is-copied {
     animation: none;
   }
 
   .how-step,
-  .pack-fade {
+  .pack-fade,
+  .flow-step,
+  .flow-pill {
     opacity: 1;
     transform: none;
   }

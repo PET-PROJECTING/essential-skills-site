@@ -19,6 +19,7 @@ export const site = {
 export const navLinks = [
   { label: "How it works", id: "how-it-works" },
   { label: "Packs", id: "packs" },
+  { label: "Workflow", id: "workflow" },
   { label: "Skills", id: "skills" },
 ] as const;
 
@@ -132,6 +133,78 @@ export function getPacks(quickCount: number, totalCount: number): Pack[] {
   ];
 }
 
+export const recommendedFlow = {
+  title: "Recommended flow",
+  subtitle:
+    "Specs and context are written into the repo as you work — documentation as you go, still there when the chat is gone.",
+  loop: [
+    {
+      number: "00",
+      title: "Your idea",
+      job: "The next feature you want built — still only in your head",
+      artifact: "not in the repo yet",
+    },
+    {
+      number: "01",
+      name: "specify-context",
+      title: "/specify-context",
+      job: "Set up the agent's environment so it stops guessing about this project",
+      artifact: "docs/ · AGENTS.md",
+    },
+    {
+      number: "02",
+      name: "create-feature-spec",
+      title: "/create-feature-spec",
+      job: "Turn that idea into a unit spec and put it on the build plan",
+      artifact: "docs/feature-specs/",
+    },
+    {
+      number: "03",
+      name: "review-code",
+      title: "/review-code",
+      job: "Check the change against the spec and this project's coding standards",
+      artifact: "session report",
+    },
+    {
+      number: "04",
+      name: "create-commit",
+      title: "/create-commit",
+      job: "Record the work as conventional commits in git",
+      artifact: "git history",
+    },
+  ],
+  filesVsChat: {
+    title: "Why files, not chat",
+    headline: "Context in a chat is a single point of failure.",
+    intro: [
+      "A chat can end, a session can be cleared, a teammate can pull the branch. Specs and context are written into the repo, so the knowledge is still there — it was never trapped in a conversation.",
+      "A new session reads those files from disk. You don't reconstruct the interview every time the thread dies.",
+    ],
+    chat: {
+      title: "Context in the chat",
+      lines: [
+        { from: "session cleared", to: "context gone" },
+        { from: "teammate pulls branch", to: "knows nothing" },
+        { from: "new model", to: "re-explain everything" },
+        { from: "decision made at 2pm", to: "lost by 5pm" },
+        { from: "long chat", to: "cost climbs, agent drifts" },
+      ],
+    },
+    files: {
+      title: "Context in the repo",
+      lines: [
+        { path: "docs/", to: "the product, architecture, and how you work" },
+        {
+          path: "docs/feature-specs/",
+          to: "the unit spec the agent should build next",
+        },
+        { path: "AGENTS.md", to: "every session pointed at those files" },
+        { label: "git history", to: "the record of what shipped" },
+      ],
+    },
+  },
+} as const;
+
 export const skillsExplorer = {
   title: "Skills Explorer",
   description: "Review the exact instruction files being injected.",
@@ -142,9 +215,11 @@ export const skillsExplorer = {
 
 /** Featured in the explorer first, in this order. */
 export const recommendedSkillNames = [
-  "grill-me",
+  "specify-context",
+  "create-feature-spec",
+  "review-code",
   "create-commit",
-  "find-skills",
+  "grill-me",
 ] as const;
 
 export const agentsStrip = {
