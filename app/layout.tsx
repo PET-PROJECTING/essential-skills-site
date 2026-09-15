@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { ScrollToTop } from "@/components/home/scroll-to-top";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/lib/home-data";
@@ -119,6 +120,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
           <ScrollToTop />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
